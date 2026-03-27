@@ -99,7 +99,7 @@ function ContactForm() {
     const data = new FormData(form);
     setStatus("Sending...");
     try {
-      const resp = await fetch("https://formspree.io/f/xvgzbgkg", {
+      const resp = await fetch("https://formspree.io/f/mkopgejn", {
         method: "POST",
         body: data,
         headers: { 'Accept': 'application/json' }
