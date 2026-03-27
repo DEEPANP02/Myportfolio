@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useForm, ValidationError } from '@formspree/react';
 import profilePhoto from "./assets/profile_photo.jpg";
 import { 
   SKILLS, EXP, PROJECTS, STATS, CERTS, CONTACT_INFO, MQ_ITEMS 
@@ -92,39 +93,52 @@ function StatCell({ s, last }) {
 }
 
 function ContactForm() {
-  const [status, setStatus] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    setStatus("Sending...");
-    try {
-      const resp = await fetch("https://formspree.io/f/mkopgejn", {
-        method: "POST",
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (resp.ok) {
-        setStatus("Success! Message sent.");
-        form.reset();
-      } else {
-        setStatus("Submission failed.");
-      }
-    } catch (err) {
-      setStatus("Network error.");
-    }
-  };
+  const [state, handleSubmit] = useForm("mkopgejn");
+
+  if (state.succeeded) {
+    return (
+      <div style={{ textAlign: "center", padding: "2rem" }}>
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🎉</div>
+        <h3 style={{ color: "#d8e4ff", marginBottom: "0.5rem" }}>Success!</h3>
+        <p style={{ color: "#6b5a8e" }}>Thanks for your message. I'll get back to you soon!</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          style={{ ...btnStyle, marginTop: "1.5rem", background: "rgba(124,58,237,0.1)", border: "1px solid #7c3aed" }}
+        >
+          Send Another
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <div className="contact-form-grid">
-        <input type="text" name="name" placeholder="Name" required style={inputStyle} />
-        <input type="email" name="email" placeholder="Email" required style={inputStyle} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+          <input type="text" name="name" id="name" placeholder="Name" required style={inputStyle} />
+          <ValidationError prefix="Name" field="name" errors={state.errors} style={{ fontSize: "0.7rem", color: "#f43f5e" }} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+          <input type="email" name="email" id="email" placeholder="Email" required style={inputStyle} />
+          <ValidationError prefix="Email" field="email" errors={state.errors} style={{ fontSize: "0.7rem", color: "#f43f5e" }} />
+        </div>
       </div>
-      <input type="text" name="subject" placeholder="Subject" required style={inputStyle} />
-      <textarea name="message" placeholder="How can I help?" rows="4" required style={inputStyle}></textarea>
-      <button type="submit" style={btnStyle}>Send Message</button>
-      {status && <div style={{ fontSize: "0.8rem", color: status.includes("Success") ? "#22c55e" : "#f43f5e", fontWeight: 700 }}>{status}</div>}
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+        <input type="text" name="subject" id="subject" placeholder="Subject" required style={inputStyle} />
+        <ValidationError prefix="Subject" field="subject" errors={state.errors} style={{ fontSize: "0.7rem", color: "#f43f5e" }} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+        <textarea name="message" id="message" placeholder="How can I help?" rows="4" required style={inputStyle}></textarea>
+        <ValidationError prefix="Message" field="message" errors={state.errors} style={{ fontSize: "0.7rem", color: "#f43f5e" }} />
+      </div>
+      <button type="submit" disabled={state.submitting} style={{ ...btnStyle, opacity: state.submitting ? 0.7 : 1 }}>
+        {state.submitting ? "Sending..." : "Send Message"}
+      </button>
+      {state.errors && !state.succeeded && (
+        <div style={{ fontSize: "0.8rem", color: "#f43f5e", fontWeight: 700 }}>
+          Submission failed. Please check the fields above.
+        </div>
+      )}
     </form>
   );
 }
