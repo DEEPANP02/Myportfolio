@@ -3,7 +3,7 @@ export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; font-size: 16px; }
+  html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; }
 
   body {
     background: #080510;
@@ -105,9 +105,9 @@ export const GLOBAL_CSS = `
 
   /* Mobile Responsive Fixes */
   @media (max-width: 767px) {
-    section { padding: 80px 6% !important; }
-    .skill-card-neo { padding: 1.8rem !important; }
-    .section-title { margin-bottom: 2rem; }
-    .hero-right-panel { padding-top: 1rem !important; }
+    section { padding: 90px 8% !important; }
+    .skill-card-neo { padding: 2rem !important; }
+    .section-title { margin-bottom: 2.5rem; }
+    .hero-right-panel { padding-top: 1.5rem !important; }
   }
 `;
