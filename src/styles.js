@@ -102,4 +102,12 @@ export const GLOBAL_CSS = `
   /* Section Titles */
   .section-title { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1; margin-bottom: 2.5rem; }
   .section-subtitle { font-size: 0.75rem; font-weight: 700; color: #a855f7; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem; }
+
+  /* Mobile Responsive Fixes */
+  @media (max-width: 767px) {
+    section { padding: 80px 6% !important; }
+    .skill-card-neo { padding: 1.8rem !important; }
+    .section-title { margin-bottom: 2rem; }
+    .hero-right-panel { padding-top: 1rem !important; }
+  }
 `;
