@@ -76,17 +76,41 @@ function ParallaxWrapper({ children, speed = 0.2 }) {
   );
 }
 
+function ScrollGlowWrapper({ children }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "0.5 0.5", "1 0"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1.02, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1, 0.7]);
+  const brightness = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
+
+  return (
+    <motion.div 
+      ref={ref} 
+      style={{ scale, opacity, filter: `brightness(${brightness})` }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function BackgroundOrbs() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 5000], [0, -400]);
-  const y2 = useTransform(scrollY, [0, 5000], [0, -800]);
-  const y3 = useTransform(scrollY, [0, 5000], [0, -200]);
+  const y1 = useTransform(scrollY, [0, 5000], [0, -600]);
+  const y2 = useTransform(scrollY, [0, 5000], [0, -1200]);
+  const y3 = useTransform(scrollY, [0, 5000], [0, -400]);
+  const y4 = useTransform(scrollY, [0, 5000], [0, -900]);
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
-      <motion.div style={{ y: y1, position: "absolute", top: "15%", left: "10%", width: "400px", height: "400px", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)", filter: "blur(60px)" }} />
-      <motion.div style={{ y: y2, position: "absolute", top: "60%", right: "5%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%)", filter: "blur(80px)" }} />
-      <motion.div style={{ y: y3, position: "absolute", top: "40%", left: "60%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 70%)", filter: "blur(50px)" }} />
+      <motion.div style={{ y: y1, position: "absolute", top: "10%", left: "-5%", width: "80vw", height: "80vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)", filter: "blur(80px)" }} />
+      <motion.div style={{ y: y2, position: "absolute", top: "50%", right: "-10%", width: "90vw", height: "90vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)", filter: "blur(100px)" }} />
+      <motion.div style={{ y: y3, position: "absolute", top: "80%", left: "20%", width: "70vw", height: "70vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)", filter: "blur(70px)" }} />
+      <motion.div style={{ y: y4, position: "absolute", top: "30%", left: "50%", width: "60vw", height: "60vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)", filter: "blur(90px)" }} />
     </div>
   );
 }
@@ -306,29 +330,31 @@ export default function App() {
       </div>
 
       {/* Sections */}
-      <section id="skills" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
+      <section id="skills" style={{ padding: "180px 5%", background: "rgba(8, 5, 16, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Expertise</Label></FadeUp>
         <ParallaxWrapper speed={-0.05}>
           <h2 className="section-title">The tools I <em>master.</em></h2>
         </ParallaxWrapper>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
           {SKILLS.map((sk, i) => (
-            <div key={i} className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "1.5rem" }}>
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#a855f7" }} />
-                <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", color: "#d8e4ff", letterSpacing: "0.1em" }}>{sk.cat}</span>
+            <ScrollGlowWrapper key={i}>
+              <div className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "1.5rem" }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#a855f7" }} />
+                  <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", color: "#d8e4ff", letterSpacing: "0.1em" }}>{sk.cat}</span>
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+                  {sk.items.map((it, j) => (
+                    <span key={j} className="skill-badge" style={{ background: "rgba(124,58,237,0.06)", border: "1px solid rgba(124,58,237,0.12)", padding: "0.4rem 1rem", borderRadius: "100px", fontSize: "0.75rem", color: "#9c7fce" }}>{it}</span>
+                  ))}
+                </div>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
-                {sk.items.map((it, j) => (
-                  <span key={j} className="skill-badge" style={{ background: "rgba(124,58,237,0.06)", border: "1px solid rgba(124,58,237,0.12)", padding: "0.4rem 1rem", borderRadius: "100px", fontSize: "0.75rem", color: "#9c7fce" }}>{it}</span>
-                ))}
-              </div>
-            </div>
+            </ScrollGlowWrapper>
           ))}
         </div>
       </section>
 
-      <section id="experience" style={{ padding: "180px 5%", background: "#100c1f", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
+      <section id="experience" style={{ padding: "180px 5%", background: "rgba(16, 12, 31, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1, borderTop: "1px solid rgba(124,58,237,0.1)", borderBottom: "1px solid rgba(124,58,237,0.1)" }}>
         <FadeUp><Label>Career</Label></FadeUp>
         <ParallaxWrapper speed={-0.05}>
           <h2 className="section-title">Where <em>code</em> meets production.</h2>
@@ -349,14 +375,15 @@ export default function App() {
         </div>
       </section>
 
-      <section id="projects" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
+      <section id="projects" style={{ padding: "180px 5%", background: "rgba(8, 5, 16, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Gallery</Label></FadeUp>
         <ParallaxWrapper speed={-0.05}>
           <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
         </ParallaxWrapper>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "3rem" }}>
           {PROJECTS.map((p, i) => (
-            <div key={i} className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column" }}>
+            <ScrollGlowWrapper key={i}>
+              <div className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column" }}>
               <div style={{ height: "240px", background: p.gradient, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "4.5rem", position: "relative" }}>
                 <span style={{ position: "absolute", top: "1.5rem", left: "1.5rem", fontSize: "1rem", fontWeight: 800, opacity: 0.2, color: "#fff" }}>0{i+1}</span>
                 {p.icon}
@@ -402,6 +429,7 @@ export default function App() {
                 <div style={{ color: "#a855f7", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.05em", opacity: 0.8 }}>{p.stat}</div>
               </div>
             </div>
+          </ScrollGlowWrapper>
           ))}
         </div>
       </section>
