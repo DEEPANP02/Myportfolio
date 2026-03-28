@@ -70,7 +70,7 @@ export const CERTS = [
 export const CONTACT_INFO = [
   { e: "📧", label: "Email", val: "deepanpprabhakaran@gmail.com", href: "mailto:deepanpprabhakaran@gmail.com" },
   { e: "📞", label: "Phone", val: "+91 6385744319", href: "tel:+916385744319" },
-  { e: "💼", label: "LinkedIn", val: "linkedin.com/in/deepan-p-3739bb285", href: "https://www.linkedin.com/in/deepan-p-3739bb285" },
+  { e: "💼", label: "LinkedIn", val: "linkedin.com/in/deepan-p", href: "https://www.linkedin.com/in/deepan-p" },
   { e: "📍", label: "Location", val: "Tiruchirapalli, Tamil Nadu", href: null },
 ];
 
