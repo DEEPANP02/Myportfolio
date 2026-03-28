@@ -1,3 +1,6 @@
+import React, { useState, useEffect, useRef } from "react";
+import { useForm, ValidationError } from '@formspree/react';
+import profilePhoto from "./assets/profile_photo.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   SKILLS, EXP, PROJECTS, STATS, CERTS, CONTACT_INFO, MQ_ITEMS 
