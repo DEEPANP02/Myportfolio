@@ -277,7 +277,7 @@ export default function App() {
       </div>
 
       {/* Sections */}
-      <section id="skills" style={{ padding: "120px 5%", background: "#080510" }}>
+      <section id="skills" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start" }}>
         <FadeUp><Label>Expertise</Label></FadeUp>
         <h2 className="section-title">The tools I <em>master.</em></h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
@@ -297,7 +297,7 @@ export default function App() {
         </div>
       </section>
 
-      <section id="experience" style={{ padding: "120px 5%", background: "#100c1f" }}>
+      <section id="experience" style={{ padding: "180px 5%", background: "#100c1f", scrollSnapAlign: "start" }}>
         <FadeUp><Label>Career</Label></FadeUp>
         <h2 className="section-title">Where <em>code</em> meets production.</h2>
         <div style={{ background: "#080510", borderRadius: "28px", border: "1px solid rgba(124,58,237,0.15)", overflow: "hidden" }}>
@@ -316,7 +316,7 @@ export default function App() {
         </div>
       </section>
 
-      <section id="projects" style={{ padding: "120px 5%", background: "#080510" }}>
+      <section id="projects" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start" }}>
         <FadeUp><Label>Gallery</Label></FadeUp>
         <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "3rem" }}>
