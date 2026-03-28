@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useForm, ValidationError } from '@formspree/react';
-import profilePhoto from "./assets/profile_photo.jpg";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   SKILLS, EXP, PROJECTS, STATS, CERTS, CONTACT_INFO, MQ_ITEMS 
 } from "./constants";
@@ -53,12 +51,39 @@ function useCounter(end, decimals = 0, startTrigger = false) {
 function FadeUp({ children, delay = 0, className = "" }) {
   const [ref, vis] = useInView();
   return (
-    <div ref={ref} className={className} style={{
-      opacity: vis ? 1 : 0,
-      transform: vis ? "translateY(0)" : "translateY(30px)",
-      transition: `all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) ${delay}s`,
-    }}>
+    <motion.div 
+      ref={ref} 
+      className={className} 
+      initial={{ opacity: 0, y: 30 }}
+      animate={vis ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.8, delay, ease: [0.2, 0.8, 0.2, 1] }}
+    >
       {children}
+    </motion.div>
+  );
+}
+
+function ParallaxWrapper({ children, speed = 0.2 }) {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, (val) => val * speed);
+  return (
+    <motion.div style={{ y }}>
+      {children}
+    </motion.div>
+  );
+}
+
+function BackgroundOrbs() {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 5000], [0, -400]);
+  const y2 = useTransform(scrollY, [0, 5000], [0, -800]);
+  const y3 = useTransform(scrollY, [0, 5000], [0, -200]);
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
+      <motion.div style={{ y: y1, position: "absolute", top: "15%", left: "10%", width: "400px", height: "400px", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)", filter: "blur(60px)" }} />
+      <motion.div style={{ y: y2, position: "absolute", top: "60%", right: "5%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%)", filter: "blur(80px)" }} />
+      <motion.div style={{ y: y3, position: "absolute", top: "40%", left: "60%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 70%)", filter: "blur(50px)" }} />
     </div>
   );
 }
@@ -173,6 +198,7 @@ export default function App() {
   return (
     <>
       <style>{GLOBAL_CSS}</style>
+      <BackgroundOrbs />
 
 
       {/* Navigation */}
@@ -277,9 +303,11 @@ export default function App() {
       </div>
 
       {/* Sections */}
-      <section id="skills" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start" }}>
+      <section id="skills" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Expertise</Label></FadeUp>
-        <h2 className="section-title">The tools I <em>master.</em></h2>
+        <ParallaxWrapper speed={-0.05}>
+          <h2 className="section-title">The tools I <em>master.</em></h2>
+        </ParallaxWrapper>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
           {SKILLS.map((sk, i) => (
             <div key={i} className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px" }}>
@@ -297,9 +325,11 @@ export default function App() {
         </div>
       </section>
 
-      <section id="experience" style={{ padding: "180px 5%", background: "#100c1f", scrollSnapAlign: "start" }}>
+      <section id="experience" style={{ padding: "180px 5%", background: "#100c1f", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Career</Label></FadeUp>
-        <h2 className="section-title">Where <em>code</em> meets production.</h2>
+        <ParallaxWrapper speed={-0.05}>
+          <h2 className="section-title">Where <em>code</em> meets production.</h2>
+        </ParallaxWrapper>
         <div style={{ background: "#080510", borderRadius: "28px", border: "1px solid rgba(124,58,237,0.15)", overflow: "hidden" }}>
           <div style={{ padding: "2.5rem", background: "linear-gradient(135deg,#3b1a8c,#7c3aed)", color: "#fff" }}>
             <div style={{ fontSize: "1.6rem", fontWeight: 600 }}>Full Stack Developer</div>
@@ -316,9 +346,11 @@ export default function App() {
         </div>
       </section>
 
-      <section id="projects" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start" }}>
+      <section id="projects" style={{ padding: "180px 5%", background: "#080510", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Gallery</Label></FadeUp>
-        <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
+        <ParallaxWrapper speed={-0.05}>
+          <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
+        </ParallaxWrapper>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "3rem" }}>
           {PROJECTS.map((p, i) => (
             <div key={i} className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column" }}>
