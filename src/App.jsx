@@ -81,7 +81,7 @@ function ScrollGlowWrapper({ children }) {
   return (
     <motion.div 
       ref={ref} 
-      style={{ scale, opacity, willChange: "transform, opacity", height: "100%" }}
+      style={{ scale, opacity, willChange: "transform, opacity", height: "100%", display: "flex", flexDirection: "column" }}
     >
       {children}
     </motion.div>
@@ -322,14 +322,14 @@ export default function App() {
 
       {/* Sections */}
       <section id="skills" style={{ padding: "180px 5%", background: "rgba(8, 5, 16, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
-        <FadeUp><Label>Expertise</Label></FadeUp>
-        <FadeUp delay={0.1}>
+        <FadeUp>
+          <Label>Expertise</Label>
           <h2 className="section-title">The tools I <em>master.</em></h2>
         </FadeUp>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
           {SKILLS.map((sk, i) => (
             <ScrollGlowWrapper key={i}>
-              <div className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px", height: "100%" }}>
+              <div className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "1.5rem" }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#a855f7" }} />
                   <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", color: "#d8e4ff", letterSpacing: "0.1em" }}>{sk.cat}</span>
@@ -346,8 +346,8 @@ export default function App() {
       </section>
 
       <section id="experience" style={{ padding: "180px 5%", background: "rgba(16, 12, 31, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1, borderTop: "1px solid rgba(124,58,237,0.1)", borderBottom: "1px solid rgba(124,58,237,0.1)" }}>
-        <FadeUp><Label>Career</Label></FadeUp>
-        <FadeUp delay={0.1}>
+        <FadeUp>
+          <Label>Career</Label>
           <h2 className="section-title">Where <em>code</em> meets production.</h2>
         </FadeUp>
         <div style={{ background: "#080510", borderRadius: "28px", border: "1px solid rgba(124,58,237,0.15)", overflow: "hidden" }}>
@@ -367,14 +367,14 @@ export default function App() {
       </section>
 
       <section id="projects" style={{ padding: "180px 5%", background: "rgba(8, 5, 16, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
-        <FadeUp><Label>Gallery</Label></FadeUp>
-        <FadeUp delay={0.1}>
+        <FadeUp>
+          <Label>Gallery</Label>
           <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
         </FadeUp>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
           {PROJECTS.map((p, i) => (
             <ScrollGlowWrapper key={i}>
-              <div className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column", height: "100%" }}>
+              <div className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column", flex: 1 }}>
               <div style={{ height: "240px", background: p.gradient, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "4.5rem", position: "relative" }}>
                 <span style={{ position: "absolute", top: "1.5rem", left: "1.5rem", fontSize: "1rem", fontWeight: 800, opacity: 0.2, color: "#fff" }}>0{i+1}</span>
                 {p.icon}
