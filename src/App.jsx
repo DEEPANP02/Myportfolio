@@ -66,15 +66,7 @@ function FadeUp({ children, delay = 0, className = "" }) {
   );
 }
 
-function ParallaxWrapper({ children, speed = 0.2 }) {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, (val) => val * speed);
-  return (
-    <motion.div style={{ y }}>
-      {children}
-    </motion.div>
-  );
-}
+
 
 function ScrollGlowWrapper({ children }) {
   const ref = useRef(null);
@@ -331,9 +323,9 @@ export default function App() {
       {/* Sections */}
       <section id="skills" style={{ padding: "180px 5%", background: "rgba(8, 5, 16, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Expertise</Label></FadeUp>
-        <ParallaxWrapper speed={-0.05}>
+        <FadeUp delay={0.1}>
           <h2 className="section-title">The tools I <em>master.</em></h2>
-        </ParallaxWrapper>
+        </FadeUp>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
           {SKILLS.map((sk, i) => (
             <ScrollGlowWrapper key={i}>
@@ -355,9 +347,9 @@ export default function App() {
 
       <section id="experience" style={{ padding: "180px 5%", background: "rgba(16, 12, 31, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1, borderTop: "1px solid rgba(124,58,237,0.1)", borderBottom: "1px solid rgba(124,58,237,0.1)" }}>
         <FadeUp><Label>Career</Label></FadeUp>
-        <ParallaxWrapper speed={-0.05}>
+        <FadeUp delay={0.1}>
           <h2 className="section-title">Where <em>code</em> meets production.</h2>
-        </ParallaxWrapper>
+        </FadeUp>
         <div style={{ background: "#080510", borderRadius: "28px", border: "1px solid rgba(124,58,237,0.15)", overflow: "hidden" }}>
           <div style={{ padding: "2.5rem", background: "linear-gradient(135deg,#3b1a8c,#7c3aed)", color: "#fff" }}>
             <div style={{ fontSize: "1.6rem", fontWeight: 600 }}>Full Stack Developer</div>
@@ -376,9 +368,9 @@ export default function App() {
 
       <section id="projects" style={{ padding: "180px 5%", background: "rgba(8, 5, 16, 0.65)", scrollSnapAlign: "start", position: "relative", zIndex: 1 }}>
         <FadeUp><Label>Gallery</Label></FadeUp>
-        <ParallaxWrapper speed={-0.05}>
+        <FadeUp delay={0.1}>
           <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
-        </ParallaxWrapper>
+        </FadeUp>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
           {PROJECTS.map((p, i) => (
             <ScrollGlowWrapper key={i}>
