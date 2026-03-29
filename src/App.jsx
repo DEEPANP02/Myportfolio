@@ -223,6 +223,7 @@ export default function App() {
   return (
     <>
       <style>{GLOBAL_CSS}</style>
+      <div className="edge-glow" />
       <BackgroundOrbs />
 
 

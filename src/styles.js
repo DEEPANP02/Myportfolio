@@ -38,6 +38,16 @@ export const GLOBAL_CSS = `
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,.28) } 50% { box-shadow: 0 0 0 9px rgba(34,197,94,.09) } }
   @keyframes hero-in { from { opacity: 0; transform: translateY(26px) } to { opacity: 1; transform: none } }
 
+  /* Persistent Edge Glow */
+  .edge-glow {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 90;
+    box-shadow: inset 4vw 0 10vw -2vw rgba(124, 58, 237, 0.25),
+                inset -4vw 0 10vw -2vw rgba(168, 85, 247, 0.25);
+  }
+
   /* Nav Links styling */
   .nav-desktop-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
   .nav-link { 
