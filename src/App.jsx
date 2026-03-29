@@ -83,15 +83,13 @@ function ScrollGlowWrapper({ children }) {
     offset: ["0 1", "0.5 0.5", "1 0"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1.02, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1, 0.7]);
-  const brightness = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1.02, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5]);
 
   return (
     <motion.div 
       ref={ref} 
-      style={{ scale, opacity, filter: `brightness(${brightness})` }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      style={{ scale, opacity, willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
@@ -107,10 +105,10 @@ function BackgroundOrbs() {
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
-      <motion.div style={{ y: y1, position: "absolute", top: "10%", left: "-5%", width: "80vw", height: "80vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)", filter: "blur(80px)" }} />
-      <motion.div style={{ y: y2, position: "absolute", top: "50%", right: "-10%", width: "90vw", height: "90vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)", filter: "blur(100px)" }} />
-      <motion.div style={{ y: y3, position: "absolute", top: "80%", left: "20%", width: "70vw", height: "70vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)", filter: "blur(70px)" }} />
-      <motion.div style={{ y: y4, position: "absolute", top: "30%", left: "50%", width: "60vw", height: "60vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)", filter: "blur(90px)" }} />
+      <motion.div style={{ y: y1, position: "absolute", top: "10%", left: "-5%", width: "80vw", height: "80vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)" }} />
+      <motion.div style={{ y: y2, position: "absolute", top: "50%", right: "-10%", width: "90vw", height: "90vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)" }} />
+      <motion.div style={{ y: y3, position: "absolute", top: "80%", left: "20%", width: "70vw", height: "70vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)" }} />
+      <motion.div style={{ y: y4, position: "absolute", top: "30%", left: "50%", width: "60vw", height: "60vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)" }} />
     </div>
   );
 }
