@@ -378,7 +378,7 @@ export default function App() {
         <ParallaxWrapper speed={-0.05}>
           <h2 className="section-title">Projects that <em>solve</em> problems.</h2>
         </ParallaxWrapper>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "3rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
           {PROJECTS.map((p, i) => (
             <ScrollGlowWrapper key={i}>
               <div className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column" }}>
