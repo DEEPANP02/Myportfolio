@@ -81,7 +81,7 @@ function ScrollGlowWrapper({ children }) {
   return (
     <motion.div 
       ref={ref} 
-      style={{ scale, opacity, willChange: "transform, opacity" }}
+      style={{ scale, opacity, willChange: "transform, opacity", height: "100%" }}
     >
       {children}
     </motion.div>
@@ -329,7 +329,7 @@ export default function App() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
           {SKILLS.map((sk, i) => (
             <ScrollGlowWrapper key={i}>
-              <div className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px" }}>
+              <div className="skill-card-neo" style={{ padding: "2.5rem", borderRadius: "20px", height: "100%" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "1.5rem" }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#a855f7" }} />
                   <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", color: "#d8e4ff", letterSpacing: "0.1em" }}>{sk.cat}</span>
@@ -374,7 +374,7 @@ export default function App() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
           {PROJECTS.map((p, i) => (
             <ScrollGlowWrapper key={i}>
-              <div className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column" }}>
+              <div className="card-proj" style={{ borderRadius: "26px", overflow: "hidden", border: "1px solid rgba(124,58,237,0.14)", background: "#100c1f", display: "flex", flexDirection: "column", height: "100%" }}>
               <div style={{ height: "240px", background: p.gradient, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "4.5rem", position: "relative" }}>
                 <span style={{ position: "absolute", top: "1.5rem", left: "1.5rem", fontSize: "1rem", fontWeight: 800, opacity: 0.2, color: "#fff" }}>0{i+1}</span>
                 {p.icon}
