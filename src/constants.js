@@ -47,7 +47,7 @@ export const PROJECTS = [
   {
     icon: "📦", isLive: true, badge: "LIVE • PRODUCTION", title: "Warehouse Management System",
     desc: "Full-stack production app for inventory tracking, packaging operations, and dispatch workflows — featuring real-time dashboards, RBAC, and PostgreSQL-backed data management.",
-    tags: ["Django", "React JS", "PostgreSQL", "Chart.js", "Bootstrap", "TypeScript"],
+    tags: ["Django", "FastAPI", "React JS", "PostgreSQL", "Chart.js", "Bootstrap", "TypeScript"],
     stat: "Live at R2S Tech Solutions",
     gradient: "linear-gradient(135deg,#0e0720 0%,#1a0b40 100%)",
   },
