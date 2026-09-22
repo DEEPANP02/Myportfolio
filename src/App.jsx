@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useForm, ValidationError } from '@formspree/react';
-import profilePhoto from "./assets/profile_photo.jpg";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   SKILLS, EXP, PROJECTS, STATS, CERTS, CONTACT_INFO, MQ_ITEMS 
@@ -244,17 +244,7 @@ export default function App() {
 
       {/* Hero Section */}
       <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", position: "relative", padding: "0 5%" }}>
-        <div className="hero-right-panel">
-          <div className="photo-wrap" style={{ position: "relative", width: 340, height: 340 }}>
-            <div style={{ position: "absolute", inset: -4, borderRadius: "50%", background: "linear-gradient(135deg,#7c3aed,#a855f7)", animation: "spin 8s linear infinite" }} />
-            <div style={{ position: "absolute", inset: 0, borderRadius: "50%", overflow: "hidden", zIndex: 2, background: "#110c20" }}>
-              <img src={profilePhoto} alt="Deepan" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%", transform: "scale(1.1)" }} />
-            </div>
-          </div>
-          <div className="hero-badge" style={{ position: "absolute", bottom: "5%", right: "5%", width: 100, height: 100, borderRadius: "50%", background: "#110c20", border: "1px solid #a855f7", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", fontSize: "0.6rem", fontWeight: 700, color: "#a855f7", animation: "spin 20s linear infinite" }}>
-            FULL<br/>STACK<br/>DEV
-          </div>
-        </div>
+
 
         <div style={{ position: "relative", zIndex: 2, maxWidth: 800 }}>
           <FadeUp>
