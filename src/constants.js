@@ -4,7 +4,7 @@ export const SKILLS = [
   { cat: "Languages", items: ["Python", "Java", "SQL", "HTML", "CSS", "JavaScript", "TypeScript"] },
   { cat: "Frameworks & Libraries", items: ["Django", "Bootstrap", "Chart.js", "REST APIs"] },
   { cat: "Databases", items: ["PostgreSQL", "MySQL"] },
-  { cat: "Tools & Platforms", items: ["Git", "Figma", "Power BI", "Tableau", "AWS (Cloud Practitioner)", "Postman"] },
+  { cat: "Tools & Platforms", items: ["Git", "Power BI", "Tableau", "AWS", "Postman"] },
   { cat: "Core Competencies", items: ["Full-Stack Development", "Database Design", "Auth & Role-Based Access Control", "Debugging & Optimization", "Unit Testing", "MVC Architecture", "Agile Collaboration", "Data Visualization"] },
 ];
 
