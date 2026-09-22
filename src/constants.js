@@ -5,7 +5,7 @@ export const SKILLS = [
   { cat: "Frameworks", items: ["Django", "React JS", "Bootstrap", "Chart.js"] },
   { cat: "Databases", items: ["PostgreSQL", "MySQL"] },
   { cat: "Analytics", items: ["Power BI", "Tableau"] },
-  { cat: "Cloud & Tools", items: ["AWS", "Git", "Figma"] },
+  { cat: "Cloud & Tools", items: ["AWS", "Git"] },
   { cat: "Practices", items: ["MVC", "RBAC", "OOP", "Unit Testing", "Clean Code"] },
 ];
 
