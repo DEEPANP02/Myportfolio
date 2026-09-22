@@ -27,7 +27,7 @@ export const PROJECTS = [
     title: "ERP Platform",
     subtitle: "Software Management System",
     desc: "Multi-company ERP with modular Django architecture across 4 apps — Transport, Warehouse, Sales & Packing. REST APIs with pagination, filtering & permission classes. Role-based React dashboards.",
-    tags: ["Django REST Framework", "React.js", "Tailwind CSS", "PostgreSQL", "JWT"],
+    tags: ["Django REST Framework", "FastAPI", "React.js", "Tailwind CSS", "PostgreSQL", "JWT"],
     perfStats: [
       { label: "FASTER API", val: "25%" },
       { label: "FASTER DB", val: "30%" },
@@ -45,7 +45,7 @@ export const PROJECTS = [
     gradient: "linear-gradient(135deg,#120827 0%,#1e0d4a 100%)",
   },
   {
-    icon: "📦", badge: null, title: "Warehouse Management System",
+    icon: "📦", isLive: true, badge: "LIVE • PRODUCTION", title: "Warehouse Management System",
     desc: "Full-stack production app for inventory tracking, packaging operations, and dispatch workflows — featuring real-time dashboards, RBAC, and PostgreSQL-backed data management.",
     tags: ["Django", "React JS", "PostgreSQL", "Chart.js", "Bootstrap", "TypeScript"],
     stat: "Live at R2S Tech Solutions",
