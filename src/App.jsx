@@ -496,7 +496,6 @@ export default function App() {
 
       <footer style={{ padding: "2.5rem 5%", background: "#080510", borderTop: "1px solid rgba(124,58,237,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.5rem" }}>
         <div style={{ fontSize: "0.8rem", color: "#3a2060" }}>© 2026 Deepan P. Tiruchirappalli, TN.</div>
-        <div style={{ fontSize: "0.8rem", color: "#6b5a8e", fontWeight: 500 }}>Developer Portfolio · Built with React</div>
       </footer>
     </>
   );
